@@ -32,7 +32,7 @@ def main():
         print( "Please give at least one argument: the path(s) of the file(s) to convert" )
         return 0
     
-    with open( "qap_problems.dat", 'wt' ) as outputFile:
+    with open( "qap_problems.qap", 'wt' ) as outputFile:
         for fileName in sys.argv[ 1 : ]:
             print( "\nReading file " + fileName )
             with open( fileName, 'rt' ) as f:
