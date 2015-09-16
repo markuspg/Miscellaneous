@@ -40,29 +40,41 @@ def main():
                 problemSize = int( line )
                 print( "  Reading problem of size {0}".format( problemSize ) )
                 
-                # Drop empty line
-                f.readline()
-                
-                # Read the flow matrix
+                print( "Reading the flow matrix" )
                 flowMatrix = list()
-                for i in range( problemSize ):
-                    flowMatrix.append( f.readline().rstrip( '\n' ).split() )
-                    # print( "  " + str( i + 1 ) + ": " + str( flowMatrix[ -1 ] ) )
+                ReadMatrix( f, flowMatrix, problemSize )
+                assert len( flowMatrix ) == problemSize
+                assert sum( [ len( column ) for column in flowMatrix ] ) == problemSize * problemSize
                 
-                # Drop empty line
-                f.readline()
-                
-                # Read the distance matrix
+                print( "Reading the distance matrix" )
                 distanceMatrix = list()
-                for i in range( problemSize ):
-                    distanceMatrix.append( f.readline().rstrip( '\n' ).split() )
-                    # print( "  " + str( i + 1 ) + ": " + str( distanceMatrix[ -1 ] ) )
+                ReadMatrix( f, distanceMatrix, problemSize )
+                assert len( distanceMatrix ) == problemSize
+                assert sum( [ len( column ) for column in distanceMatrix ] ) == problemSize * problemSize
                 
-                line = fileName + "|" + str( problemSize ) + "|" + ';'.join( [ num for row in flowMatrix for num in row ] ) + "|" + ';'.join( [ num for row in distanceMatrix for num in row ] )
+                line = fileName + "|" + str( problemSize ) + "|" + ';'.join( [ str( num ) for row in flowMatrix for num in row ] ) + "|" + ';'.join( [ str( num ) for row in distanceMatrix for num in row ] )
                 outputFile.write( line + "\n" )
     
     return 0
 
+def ReadLine( argFile ):
+    line = argFile.readline()
+    while not line or line == '\n':
+        line = argFile.readline()
+    return line
+
+def ReadMatrix( argFile, argList, argProblemSize ):
+    # Read all rows (their quantity matches the problem size)
+    for i in range( argProblemSize ):
+        # Read first line
+        argList.append( [ int( digit ) for digit in ReadLine( argFile ).rstrip( '\n' ).split() ] )
+        # If the row is not yet full, continue on the following lines
+        while len( argList[ -1 ] ) < argProblemSize:
+            argList[ -1 ].extend( [ int( digit ) for digit in ReadLine( argFile ).rstrip( '\n' ).split() ] )
+        assert len( argList[ -1 ] ) == argProblemSize
+    
+    
+    assert len( argList ) == argProblemSize
 
 if __name__ == "__main__":
     main()
