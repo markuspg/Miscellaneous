@@ -60,7 +60,7 @@ def main():
                         break
                 print( "  The precedence relations are '{0}'".format( ';'.join( [ str( pR ) for pR in precedenceRelations ] ) ) )
                 
-                lineOut = fileName + "|SALBP|" + str( taskQuantity ) + "|" + ';'.join( [ ( str( i + 1 ) + ':' + ','.join( [ str( x ) for x in precedenceRelations[ i ] ] ) ) for i in range( taskQuantity ) ] )
+                lineOut = fileName + "|SALBP|" + str( taskQuantity ) + "|" + ';'.join( [ str( duration ) for duration in taskDurations ] ) + "|" + ';'.join( [ ( str( i + 1 ) + ':' + ','.join( [ str( x ) for x in precedenceRelations[ i ] ] ) ) for i in range( taskQuantity ) ] )
                 print( lineOut )
                 outputFile.write( lineOut + "\n" )
     
