@@ -52,7 +52,7 @@ def main():
                 assert len( distanceMatrix ) == problemSize
                 assert sum( [ len( column ) for column in distanceMatrix ] ) == problemSize * problemSize
                 
-                line = fileName + "|" + str( problemSize ) + "|" + ';'.join( [ str( num ) for row in flowMatrix for num in row ] ) + "|" + ';'.join( [ str( num ) for row in distanceMatrix for num in row ] )
+                line = fileName + "|QAP|" + str( problemSize ) + "|" + ';'.join( [ str( num ) for row in flowMatrix for num in row ] ) + "|" + ';'.join( [ str( num ) for row in distanceMatrix for num in row ] )
                 outputFile.write( line + "\n" )
     
     return 0

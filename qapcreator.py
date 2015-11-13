@@ -30,7 +30,7 @@ def main():
     for i in range( pow( problemSize, 2 ) ):
         flows.append( random.randrange( 0, 101 ) )
         distances.append( random.randrange( 0, 101 ) )
-    problemLine = "test.txt|" + str( problemSize ) + "|" + ';'.join( [ str( num ) for num in flows ] ) + "|" + ';'.join( [ str( num ) for num in distances ] )
+    problemLine = "test" + str( problemSize ) + ".qap|QAP|" + str( problemSize ) + "|" + ';'.join( [ str( num ) for num in flows ] ) + "|" + ';'.join( [ str( num ) for num in distances ] )
     print( problemLine )
 
 if __name__ == "__main__":
